@@ -158,21 +158,21 @@ git clone https://github.com/GoogleCloudPlatform/transactional-microservice-exam
 ### Build container images and deploy them on Cloud Run
 
 ```shell
-cd $HOME/transactional-microservice-examples/services/order-async
+cd $HOME/transactional-microservice-examples/services/python/order-async
 gcloud builds submit --tag gcr.io/$PROJECT_ID/order-service-async
 gcloud run deploy order-service-async \
   --image gcr.io/$PROJECT_ID/order-service-async \
   --platform=managed --region=us-central1 \
   --no-allow-unauthenticated
 
-cd $HOME/transactional-microservice-examples/services/customer-async
+cd $HOME/transactional-microservice-examples/services/python/customer-async
 gcloud builds submit --tag gcr.io/$PROJECT_ID/customer-service-async
 gcloud run deploy customer-service-async \
   --image gcr.io/$PROJECT_ID/customer-service-async \
   --platform=managed --region=us-central1 \
   --no-allow-unauthenticated
 
-cd $HOME/transactional-microservice-examples/services/event-publisher
+cd $HOME/transactional-microservice-examples/services/python/event-publisher
 gcloud builds submit --tag gcr.io/$PROJECT_ID/event-publisher
 gcloud run deploy event-publisher \
   --image gcr.io/$PROJECT_ID/event-publisher \
@@ -287,21 +287,21 @@ gcloud pubsub subscriptions create push-customer-to-order \
 ### Build container images and deploy them on Cloud Run
 
 ```shell
-cd $HOME/transactional-microservice-examples/services/order-sync
+cd $HOME/transactional-microservice-examples/services/python/order-sync
 gcloud builds submit --tag gcr.io/$PROJECT_ID/order-service-sync
 gcloud run deploy order-service-sync \
   --image gcr.io/$PROJECT_ID/order-service-sync \
   --platform=managed --region=us-central1 \
   --no-allow-unauthenticated
 
-cd $HOME/transactional-microservice-examples/services/customer-sync
+cd $HOME/transactional-microservice-examples/services/python/customer-sync
 gcloud builds submit --tag gcr.io/$PROJECT_ID/customer-service-sync
 gcloud run deploy customer-service-sync \
   --image gcr.io/$PROJECT_ID/customer-service-sync \
   --platform=managed --region=us-central1 \
   --no-allow-unauthenticated
 
-cd $HOME/transactional-microservice-examples/services/order-processor
+cd $HOME/transactional-microservice-examples/services/python/order-processor
 gcloud builds submit --tag gcr.io/$PROJECT_ID/order-processor-service
 gcloud run deploy order-processor-service \
   --image gcr.io/$PROJECT_ID/order-processor-service \
@@ -351,7 +351,7 @@ SERVICE_NAME="order-service-sync"
 ORDER_SERVICE_URL=$(gcloud run services list --platform managed \
     --format="table[no-heading](URL)" --filter="metadata.name:${SERVICE_NAME}")
     
-cd $HOME/transactional-microservice-examples/services/order-processor
+cd $HOME/transactional-microservice-examples/services/python/order-processor
 cp order_workflow.yaml.template order_workflow.yaml
 sed -i "s#ORDER-SERVICE-URL#${ORDER_SERVICE_URL}#" order_workflow.yaml
 sed -i "s#CUSTOMER-SERVICE-URL#${CUSTOMER_SERVICE_URL}#" order_workflow.yaml

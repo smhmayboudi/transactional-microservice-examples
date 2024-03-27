@@ -100,14 +100,14 @@ git clone https://github.com/GoogleCloudPlatform/transactional-microservice-exam
 ### Build container images and deploy them on Cloud Run
 
 ```shell
-cd $HOME/transactional-microservice-examples/cqrs/services/order
+cd $HOME/transactional-microservice-examples/cqrs/services/python/order
 gcloud builds submit --tag gcr.io/$PROJECT_ID/order-service-cqrs
 gcloud run deploy order-service-cqrs \
   --image gcr.io/$PROJECT_ID/order-service-cqrs \
   --platform=managed --region=us-central1 \
   --no-allow-unauthenticated
 
-cd $HOME/transactional-microservice-examples/cqrs/services/product
+cd $HOME/transactional-microservice-examples/cqrs/services/python/product
 gcloud builds submit --tag gcr.io/$PROJECT_ID/product-service-cqrs
 gcloud run deploy product-service-cqrs \
   --image gcr.io/$PROJECT_ID/product-service-cqrs \
@@ -118,7 +118,7 @@ SERVICE_NAME="product-service-cqrs"
 PRODUCT_SERVICE_URL=$(gcloud run services list --platform managed \
     --format="table[no-heading](URL)" --filter="metadata.name:${SERVICE_NAME}")
 
-cd $HOME/transactional-microservice-examples/cqrs/services/orderinfo
+cd $HOME/transactional-microservice-examples/cqrs/services/python/orderinfo
 gcloud builds submit --tag gcr.io/$PROJECT_ID/orderinfo-service-cqrs
 gcloud run deploy orderinfo-service-cqrs \
   --image gcr.io/$PROJECT_ID/orderinfo-service-cqrs \
@@ -126,7 +126,7 @@ gcloud run deploy orderinfo-service-cqrs \
   --no-allow-unauthenticated \
   --set-env-vars "PRODUCT_SERVICE_URL=$PRODUCT_SERVICE_URL"
 
-cd $HOME/transactional-microservice-examples/cqrs/services/event-publisher
+cd $HOME/transactional-microservice-examples/cqrs/services/python/event-publisher
 gcloud builds submit --tag gcr.io/$PROJECT_ID/event-publisher
 gcloud run deploy event-publisher \
   --image gcr.io/$PROJECT_ID/event-publisher \
@@ -138,7 +138,7 @@ gcloud run deploy event-publisher \
 Create a BQ table for order information.
 
 ```shell
-cd $HOME/transactional-microservice-examples/cqrs/services/orderinfo
+cd $HOME/transactional-microservice-examples/cqrs/services/python/orderinfo
 bq mk --dataset $PROJECT_ID:cqrs_example
 bq mk --table cqrs_example.order_information table_schema.json
 ```
@@ -146,10 +146,10 @@ bq mk --table cqrs_example.order_information table_schema.json
 Create an index for Datastore.
 
 ```shell
-cd $HOME/transactional-microservice-examples/cqrs/services/orderinfo
+cd $HOME/transactional-microservice-examples/cqrs/services/python/orderinfo
 gcloud datastore indexes create index.yaml --quiet
 
-cd $HOME/transactional-microservice-examples/cqrs/services/event-publisher
+cd $HOME/transactional-microservice-examples/cqrs/services/python/event-publisher
 gcloud datastore indexes create index.yaml --quiet
 ```
 
