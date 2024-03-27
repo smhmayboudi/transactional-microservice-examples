@@ -9,6 +9,11 @@ NodeJS
 - https://github.com/GoogleCloudPlatform/cloud-run-microservice-template-nodejs
 - https://github.com/googleapis/nodejs-datastore/tree/main/samples
 
+Go
+
+- https://github.com/GoogleCloudPlatform/cloud-run-microservice-template-go
+- https://github.com/googleapis/google-cloud-go
+
 # Lab: Using GCP services to execute transactional workflows in microservices architecture
 
 Disclaimer: This is not an official Google product.
