@@ -1,3 +1,14 @@
+# Note
+
+Although I don't have access to GCP, I made an attempt to communicate with the API and perform simple tasks in order to become acquainted with the Google Cloud APIs and the transactional microservice pattern. My goal wasn't to run and test the code, but rather to challenge myself by writing in JavaScript, stepping out of my comfort zone of using TypeScript and embracing different approaches.
+
+References:
+
+NodeJS
+
+- https://github.com/GoogleCloudPlatform/cloud-run-microservice-template-nodejs
+- https://github.com/googleapis/nodejs-datastore/tree/main/samples
+
 # Lab: Using GCP services to execute transactional workflows in microservices architecture
 
 Disclaimer: This is not an official Google product.
